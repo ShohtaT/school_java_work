@@ -1,5 +1,5 @@
 class Tsamp {
-  static final int N = 20; // N角形
+  static final int N = 5; // N角形
 
   public static void main(String[] args) {
     TurtleFrame f;             // TurtleFrame型の変数 f の宣言
@@ -8,7 +8,8 @@ class Tsamp {
     f.add(m);                  // f(表示フレーム) に m(亀) を追加
 
     int i = 1;
-    final int angle = 360 / N;
+    final int k = 2;
+    final int angle = (360 * k) / N;
     while (i++ <= N) {
       m.rt(angle);
       m.fd(50);
