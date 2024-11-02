@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class CirclePanel extends JPanel implements MouseListener {
+class CirclePanel extends JPanel implements MouseListener, MouseMotionListener {
   private int   radius = 5;
   private Color color  = Color.red;
   private int   x[],y[],r[];
@@ -16,6 +16,7 @@ class CirclePanel extends JPanel implements MouseListener {
     r=new int[MAX];
     c=new Color[MAX];
     this.addMouseListener(this);
+    this.addMouseMotionListener(this);
   }
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -47,6 +48,11 @@ class CirclePanel extends JPanel implements MouseListener {
   public void mouseReleased(MouseEvent e){ }
   public void mouseEntered(MouseEvent e) { }
   public void mouseExited(MouseEvent e)  { }
+
+  public void mouseDragged(MouseEvent e) {
+    addCircle(e.getX(),e.getY());
+  }
+  public void mouseMoved(MouseEvent e) { }
 }
 
 class CircleFrame extends JFrame implements ActionListener {
