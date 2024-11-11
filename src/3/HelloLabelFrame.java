@@ -4,15 +4,24 @@ import java.awt.event.*;
 
 class HelloLabelFrame extends JFrame implements ActionListener {
   private JLabel label;
+  private Timer timer;
 
   public HelloLabelFrame() {
     this.setSize(300, 200);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    // ボタンを押すとおみくじが引かれるようにする（actionPerformedが呼び出される）
     JButton b = new JButton("おみくじを引いてみる！");
     this.add(b, BorderLayout.SOUTH);
-    label = new JLabel(" ", JLabel.CENTER);
+
+    // 結果を表示するラベル
+    label = new JLabel("　", JLabel.CENTER);
     this.add(label, BorderLayout.CENTER);
     b.addActionListener(this);
+
+    // timerオブジェクトを生成して，startする。それにより自動的に1秒間隔で(永久に) おみくじボタンが押されるようにする。
+    timer = new Timer(1000, this);
+    timer.start(); // 一度，スタートすると，stopメソッドを呼ぶまでactionPerformedが定期的に呼ばれ続ける。
     this.setVisible(true);
   }
 
