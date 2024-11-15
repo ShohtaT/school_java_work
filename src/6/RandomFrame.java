@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-class Figure {
+class Figure6 {
   protected int x,y,size;
   protected Color color;
   private final static Color cl[]={Color.RED, Color.BLUE, Color.GREEN, Color.BLACK};
-  Figure() {
+  Figure6() {
     x = (int)(Math.random()*450);
     y = (int)(Math.random()*450);
     size=(int)(Math.random()*30+20);
@@ -15,21 +15,21 @@ class Figure {
   void draw(Graphics g) {}
 }
 
-class Circle extends Figure {
+class Circle extends Figure6 {
   void draw(Graphics g) {
     g.setColor(color);
     g.drawOval(x,y,size,size);
   }
 }
 
-class Box extends Figure {
+class Box extends Figure6 {
   void draw(Graphics g) {
     g.setColor(color);
     g.drawRect(x,y,size,size);
   }
 }
 
-class Cross extends Figure {
+class Cross extends Figure6 {
   void draw(Graphics g) {
     g.setColor(color);
     // 線を二本引く
@@ -38,7 +38,7 @@ class Cross extends Figure {
   }
 }
 
-class Triangle extends Figure {
+class Triangle extends Figure6 {
   void draw(Graphics g) {
     g.setColor(color);
     // 3点を指定して三角形を描画
@@ -50,9 +50,9 @@ class Triangle extends Figure {
 
 class RandomPanel extends JPanel {
   private final static int NUM=50;
-  private ArrayList<Figure> fig;
+  private ArrayList<Figure6> fig;
   RandomPanel(){
-    fig=new ArrayList<Figure>();
+    fig=new ArrayList<Figure6>();
     for(int i=0;i<NUM;i++){
       fig.add(new Box());
       fig.add(new Circle());
@@ -62,7 +62,7 @@ class RandomPanel extends JPanel {
   }
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    for(Figure f: fig){
+    for(Figure6 f: fig){
       f.draw(g); 
     }
   }
