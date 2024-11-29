@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import javax.swing.border.*;
 
 // 描画した図形を記録する Figure クラス (継承して利用する)
 class Figure {
@@ -106,16 +107,34 @@ class ViewPanel extends JPanel implements Observer {
 
 class DrawFrame extends JFrame {
   DrawModel model;
-  ViewPanel view1,view2;
+  ViewPanel view1,view2,view3,view4;
   DrawController cont;
    public DrawFrame(){
       model=new DrawModel();
       cont =new DrawController(model);
+
       view1=new ViewPanel(model,cont);
+      view2=new ViewPanel(model,cont);
+      view3=new ViewPanel(model,cont);
+      view4=new ViewPanel(model,cont);
+
+      // 各ViewPanelに枠線を設定する
+      view1.setBorder(new LineBorder(Color.blue, 3));
+      view2.setBorder(new LineBorder(Color.yellow, 3));
+      view3.setBorder(new LineBorder(Color.red, 3));
+      view4.setBorder(new LineBorder(Color.green, 3));
+
+      this.setLayout(new GridLayout(2, 2));
+      this.setSize(1000, 1000);
+
+      // ViewPanelをフレームに追加
+      this.add(view1);
+      this.add(view2);
+      this.add(view3);
+      this.add(view4);
+
       this.setBackground(Color.black);
       this.setTitle("Draw Editor");
-      this.setSize(500,500);
-      this.add(view1);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
     }
